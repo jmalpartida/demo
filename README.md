@@ -1,28 +1,37 @@
-# AngularApp
+# Update Browserslist DB
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.4.
+<img width="120" height="120" alt="Browserslist logo by Anton Popov"
+     src="https://browsersl.ist/logo.svg" align="right">
 
-## Development server
+CLI tool to update `caniuse-lite` with browsers DB
+from [Browserslist](https://github.com/browserslist/browserslist/) config.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Some queries like `last 2 versions` or `>1%` depend on actual data
+from `caniuse-lite`.
 
-## Code scaffolding
+```sh
+npx update-browserslist-db@latest
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<a href="https://evilmartians.com/?utm_source=update-browserslist-db">
+  <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg"
+       alt="Sponsored by Evil Martians" width="236" height="54">
+</a>
 
-## Build
+## Why you need to call it regularly
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+`npx update-browserslist-db@latest` updates `caniuse-lite` version
+in your npm, yarn, or pnpm lock file.
 
-## Running unit tests
+This update will bring data about new browsers to polyfill tools
+like Autoprefixer or Babel and reduce already unnecessary polyfills.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+You need to do it regularly for three reasons:
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-# demo
+1. To use the latest browser’s versions and statistics in queries like
+   `last 2 versions` or `>1%`. For example, if you created your project
+   2 years ago and did not update your dependencies, `last 1 version`
+   will return 2-year-old browsers.
+2. Actual browser data will lead to using less polyfills. It will reduce
+   size of JS and CSS files and improve website performance.
+3. `caniuse-lite` deduplication: to synchronize versions in different tools.
